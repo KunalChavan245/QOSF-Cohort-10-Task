@@ -1,32 +1,66 @@
-Task 1 Statevector simulation of quantum circuits
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Circuit Simulation Tasks</title>
+</head>
+<body>
+    <h1>Quantum Circuit Simulation: Tasks</h1>
+    <h2>Task 1: Naive Simulation using Matrix Multiplication</h2>
+    <p>
+        Implement a statevector simulator for quantum circuits using matrix multiplication. You will define quantum gates like X, H, and CNOT, 
+        and apply them to a quantum state represented as a vector of length 2<sup>n</sup>. The gates will be applied sequentially to the statevector 
+        via matrix multiplication using the Kronecker product (or similar functionality).
+    </p>    
+    <h3>Steps:</h3>
+    <ol>
+        <li>
+            Define the common quantum gates (Identity, X, Hadamard, CNOT) as matrix representations.
+        </li>
+        <li>
+            Use the Kronecker product (<code>np.kron</code> in NumPy) to create an n-qubit quantum statevector of length 2<sup>n</sup>.
+        </li>
+        <li>
+            Initialize the statevector in the all-zero state <code>|00...0&gt;</code>.
+        </li>
+        <li>
+            Sequentially apply the quantum gates (X, H, CNOT) to the statevector using matrix multiplication.
+        </li>
+        <li>
+            Plot the runtime of the code as a function of the number of qubits.
+        </li>
+    </ol>
+    <p>Answer the following:</p>
+    <ul>
+        <li>How many qubits can you simulate with this method?</li>
+    </ul>
+    <h2>Task 2: Advanced Simulation using Tensor Multiplication</h2>
+    <p>
+        Implement an advanced quantum circuit simulation using tensor multiplication. Instead of representing the quantum state as a vector, 
+        you will use an n-dimensional tensor of shape (2, 2, ..., 2) to represent the n-qubit state. Apply 1-qubit and 2-qubit gates 
+        (X, H, CNOT) via tensor contraction using <code>np.tensordot</code> or <code>np.einsum</code>.
+    </p>
+    <h3>Steps:</h3>
+    <ol>
+        <li>
+            Define the quantum gates (Identity, X, H, CNOT) as matrices.
+        </li>
+        <li>
+            Create a tensor to represent the initial quantum state with shape (2, 2, ..., 2).
+        </li>
+        <li>
+            Apply the quantum gates sequentially to the state tensor using tensor multiplication.
+        </li>
+        <li>
+            Plot the runtime of the code as a function of the number of qubits.
+        </li>
+    </ol>
+    <p>Answer the following:</p>
+    <ul>
+        <li>How many qubits can you simulate using tensor multiplication?</li>
+        <li>Compare the runtime results of this method with the matrix multiplication method in Task 1.</li>
+    </ul>
+</body>
+</html>
 
-For this task, you will implement a statevector simulator for quantum circuits from scratch. The goal is to demystify how to simulate a quantum computer and to demonstrate your familiarity with quantum circuits.
-
-1) Naive simulation using matrix multiplication
-
-Remember that  [1, 0] = |0> is the most common representation of the single-qubit zero state, and analogously [0, 1] = |1>. 
-
-Most matrix representations of quantum gates you can find online follow this convention. For example, the X gate can be written as
-
-X = 1  00   1  
-
-Using the Kronecker product and the np.kron function in numpy (we are using it as an example, but you can use any library you want to), you can create a vector of length 2^n representing an n-qubit quantum state, and matrix representation of X, H, and CNOT gates. 
-
-Hint: The single-qubit Identity matrix is
-
-I = 0  11   0  
-
-Define a quantum circuit consisting of these gates and apply the gates sequentially to the statevector via matrix multiplication. 
-
-Plot the runtime of your code as a function of the number of qubits. How many qubits can you simulate this way? 
-
-
-2) Advanced simulation using tensor multiplication
-
-Tensors are generalizations of vectors and matrices to any number of dimensions. Instead of representing an n-qubit state as a vector of length 2^n, it may be more natural to write it as an n-dimensional tensor of shape (2, 2, …., 2). The transformations between these two representations are naturally possible via np.reshape and np.flatten.
-
-Using tensor multiplication and the np.tensordot (or np.einsum) function, you can apply a gate to the quantum state by multiplying the 1- or 2-qubit matrices with the state tensor along the corresponding qubit axes.
-
-Define a quantum circuit consisting of the 1- and 2-qubit matrix representations of X, H, CNOT (same as above) and apply them sequentially to the quantum state tensor via tensor multiplication.
-
-Plot the runtime of your code as a function of the number of qubits. How many qubits can you simulate this way? Compare your results to subtask 1).
